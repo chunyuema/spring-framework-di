@@ -1,9 +1,6 @@
 package com.chunyue.springframeworkdi;
 
-import com.chunyue.springframeworkdi.controllers.ConstructorInjectedController;
-import com.chunyue.springframeworkdi.controllers.MyController;
-import com.chunyue.springframeworkdi.controllers.PropertyInjectedController;
-import com.chunyue.springframeworkdi.controllers.SetterInjectedController;
+import com.chunyue.springframeworkdi.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -13,6 +10,9 @@ public class SpringFrameworkDiApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SpringFrameworkDiApplication.class, args);
+
+		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+		System.out.println(i18nController.sayHello());
 
 		System.out.println("-----Primary Bean");
 		MyController myController = (MyController) ctx.getBean("myController");
