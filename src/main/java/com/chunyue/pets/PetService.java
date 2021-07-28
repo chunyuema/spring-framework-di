@@ -1,4 +1,4 @@
-package com.chunyue.springframeworkdi.services;
+package com.chunyue.pets;
 
 public interface PetService {
     String getPetType();

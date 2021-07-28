@@ -1,6 +1,6 @@
 package com.chunyue.springframeworkdi.controllers;
 
-import com.chunyue.springframeworkdi.services.PetService;
+import com.chunyue.pets.PetService;
 import org.springframework.stereotype.Controller;
 
 @Controller
