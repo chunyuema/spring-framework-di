@@ -1,5 +1,7 @@
 package com.chunyue.springframeworkdi.config;
 
+import com.chunyue.springframeworkdi.repositories.EnglishGreetRepository;
+import com.chunyue.springframeworkdi.repositories.EnglishGreetRepositoryImpl;
 import com.chunyue.springframeworkdi.services.ConstructorGreetingService;
 import com.chunyue.springframeworkdi.services.I18nEnglishGreetingService;
 import com.chunyue.springframeworkdi.services.I18nSpanishGreetingService;
@@ -15,6 +17,12 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class GreetingServiceConfig {
     @Bean
+    EnglishGreetRepository englishGreetRepository(){
+        return new EnglishGreetRepositoryImpl();
+    }
+
+
+    @Bean
     ConstructorGreetingService constructorGreetingService(){
         return new ConstructorGreetingService();
     }
@@ -28,8 +36,8 @@ public class GreetingServiceConfig {
 
     @Profile("EN")
     @Bean
-    I18nEnglishGreetingService I18nService(){
-        return new I18nEnglishGreetingService();
+    I18nEnglishGreetingService I18nService(EnglishGreetRepository englishGreetRepository){
+        return new I18nEnglishGreetingService(englishGreetRepository);
     }
 
     @Profile({"ES", "default"})
