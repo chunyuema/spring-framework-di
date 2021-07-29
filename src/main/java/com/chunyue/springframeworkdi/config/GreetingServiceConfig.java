@@ -1,10 +1,12 @@
 package com.chunyue.springframeworkdi.config;
 
 import com.chunyue.springframeworkdi.services.ConstructorGreetingService;
+import com.chunyue.springframeworkdi.services.I18nEnglishGreetingService;
 import com.chunyue.springframeworkdi.services.PrimaryGreetingService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
 
 // Using the java configuration can allow us to get rid of the @Service component annotation
@@ -21,6 +23,12 @@ public class GreetingServiceConfig {
     @Bean
     PrimaryGreetingService primaryGreetingService(){
         return new PrimaryGreetingService();
+    }
+
+    @Profile("EN")
+    @Bean
+    I18nEnglishGreetingService I18nService(){
+        return new I18nEnglishGreetingService();
     }
 }
 
