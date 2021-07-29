@@ -2,6 +2,7 @@ package com.chunyue.springframeworkdi.config;
 
 import com.chunyue.springframeworkdi.services.ConstructorGreetingService;
 import com.chunyue.springframeworkdi.services.I18nEnglishGreetingService;
+import com.chunyue.springframeworkdi.services.I18nSpanishGreetingService;
 import com.chunyue.springframeworkdi.services.PrimaryGreetingService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,12 @@ public class GreetingServiceConfig {
     @Bean
     I18nEnglishGreetingService I18nService(){
         return new I18nEnglishGreetingService();
+    }
+
+    @Profile({"ES", "default"})
+    @Bean("I18nService") // need to manually rename it since this cannot be directly again in the same java class
+    I18nSpanishGreetingService i18nSpanishGreetingService(){
+        return new I18nSpanishGreetingService();
     }
 }
 
