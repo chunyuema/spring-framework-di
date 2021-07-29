@@ -1,5 +1,7 @@
 package com.chunyue.springframeworkdi.config;
 
+import com.chunyue.pets.PetService;
+import com.chunyue.pets.PetServiceFactory;
 import com.chunyue.springframeworkdi.repositories.EnglishGreetRepository;
 import com.chunyue.springframeworkdi.repositories.EnglishGreetRepositoryImpl;
 import com.chunyue.springframeworkdi.services.ConstructorGreetingService;
@@ -20,7 +22,6 @@ public class GreetingServiceConfig {
     EnglishGreetRepository englishGreetRepository(){
         return new EnglishGreetRepositoryImpl();
     }
-
 
     @Bean
     ConstructorGreetingService constructorGreetingService(){
@@ -44,6 +45,23 @@ public class GreetingServiceConfig {
     @Bean("I18nService") // need to manually rename it since this cannot be directly again in the same java class
     I18nSpanishGreetingService i18nSpanishGreetingService(){
         return new I18nSpanishGreetingService();
+    }
+
+    @Bean
+    PetServiceFactory petServiceFactory(){
+        return new PetServiceFactory();
+    }
+
+    @Profile({"dog", "default"})
+    @Bean
+    PetService dogPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("dog");
+    }
+
+    @Profile("cat")
+    @Bean
+    PetService catPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("cat");
     }
 }
 
