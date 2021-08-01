@@ -2,22 +2,33 @@ package com.chunyue.springframeworkdi.config;
 
 import com.chunyue.pets.PetService;
 import com.chunyue.pets.PetServiceFactory;
+import com.chunyue.springframeworkdi.datasource.MockDataSource;
 import com.chunyue.springframeworkdi.repositories.EnglishGreetRepository;
 import com.chunyue.springframeworkdi.repositories.EnglishGreetRepositoryImpl;
 import com.chunyue.springframeworkdi.services.ConstructorGreetingService;
 import com.chunyue.springframeworkdi.services.I18nEnglishGreetingService;
 import com.chunyue.springframeworkdi.services.I18nSpanishGreetingService;
 import com.chunyue.springframeworkdi.services.PrimaryGreetingService;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
 
 
 // Using the java configuration can allow us to get rid of the @Service component annotation
 // Another way to declare configure the spring component for it to be picked up
 @Configuration
+@PropertySource("classpath:datasource.properties")
 public class GreetingServiceConfig {
+    @Bean
+    MockDataSource mockDataSource(@Value("${com.username}") String username,
+                                  @Value("${com.password}") String password,
+                                  @Value("${com.jdbcurl}") String jdbcurl){
+        MockDataSource mockDataSource = new MockDataSource();
+        mockDataSource.setUsername(username);
+        mockDataSource.setPassword(password);
+        mockDataSource.setJdbcurl(jdbcurl);
+        return mockDataSource;
+    }
+
     @Bean
     EnglishGreetRepository englishGreetRepository(){
         return new EnglishGreetRepositoryImpl();

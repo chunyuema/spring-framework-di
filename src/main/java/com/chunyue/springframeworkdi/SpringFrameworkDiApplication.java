@@ -1,6 +1,7 @@
 package com.chunyue.springframeworkdi;
 
 import com.chunyue.springframeworkdi.controllers.*;
+import com.chunyue.springframeworkdi.datasource.MockDataSource;
 import com.chunyue.springframeworkdi.services.PrototypeBean;
 import com.chunyue.springframeworkdi.services.SingletonBean;
 import org.springframework.boot.SpringApplication;
@@ -52,6 +53,12 @@ public class SpringFrameworkDiApplication {
 		System.out.println(prototypeBean1.getMyScope());
 		PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
 		System.out.println(prototypeBean2.getMyScope());
+
+
+		MockDataSource mockDataSource = ctx.getBean(MockDataSource.class);
+		System.out.println(mockDataSource.getUsername());
+		System.out.println(mockDataSource.getPassword());
+		System.out.println(mockDataSource.getJdbcurl());
 	}
 
 }
