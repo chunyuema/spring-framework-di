@@ -16,7 +16,8 @@ import org.springframework.context.annotation.*;
 // Using the java configuration can allow us to get rid of the @Service component annotation
 // Another way to declare configure the spring component for it to be picked up
 @Configuration
-@PropertySource("classpath:datasource.properties")
+//@PropertySource("classpath:datasource.properties") // this is not necessary if we depend on spring boot, which
+// automatically scan the application.properties file
 public class GreetingServiceConfig {
     @Bean
     MockDataSource mockDataSource(@Value("${com.username}") String username,
