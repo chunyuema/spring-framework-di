@@ -1,0 +1,4 @@
+com:
+  username: qa-yml-username
+  password: qa-yml-password
+  jdbcurl: qa-yml-url

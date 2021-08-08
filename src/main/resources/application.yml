@@ -1,6 +1,6 @@
 spring:
-  profile:
-    active: dog, EN
+  profiles:
+    active: cat, EN, qa
 com:
   username: yml-username
   password: yml-password
