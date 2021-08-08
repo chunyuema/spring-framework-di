@@ -1,5 +1,6 @@
 package com.chunyue.springframeworkdi;
 
+import com.chunyue.springframeworkdi.config.SpringFrameworkConfig;
 import com.chunyue.springframeworkdi.controllers.*;
 import com.chunyue.springframeworkdi.datasource.MockDataSource;
 import com.chunyue.springframeworkdi.services.PrototypeBean;
@@ -59,6 +60,12 @@ public class SpringFrameworkDiApplication {
 		System.out.println(mockDataSource.getUsername());
 		System.out.println(mockDataSource.getPassword());
 		System.out.println(mockDataSource.getJdbcurl());
+
+		System.out.println("------- Config Prop Bean -------");
+		SpringFrameworkConfig springFrameworkConfig = ctx.getBean(SpringFrameworkConfig.class);
+		System.out.println(springFrameworkConfig.getUsername());
+		System.out.println(springFrameworkConfig.getPassword());
+		System.out.println(springFrameworkConfig.getJdbcurl());
 	}
 
 }
