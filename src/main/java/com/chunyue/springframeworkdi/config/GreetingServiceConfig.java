@@ -9,6 +9,7 @@ import com.chunyue.springframeworkdi.services.ConstructorGreetingService;
 import com.chunyue.springframeworkdi.services.I18nEnglishGreetingService;
 import com.chunyue.springframeworkdi.services.I18nSpanishGreetingService;
 import com.chunyue.springframeworkdi.services.PrimaryGreetingService;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -20,14 +21,15 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 //@PropertySource("classpath:datasource.properties") // this is not necessary if we depend on spring boot, which
 // automatically scan the application.properties file
+@EnableConfigurationProperties(ConstructorConfig.class)
 public class GreetingServiceConfig {
     // let sring inject this springframworkconfig bean
     @Bean
-    MockDataSource mockDataSource(SpringFrameworkConfig springFrameworkConfig){
+    MockDataSource mockDataSource(ConstructorConfig constructorConfig){
         MockDataSource mockDataSource = new MockDataSource();
-        mockDataSource.setUsername(springFrameworkConfig.getUsername());
-        mockDataSource.setPassword(springFrameworkConfig.getPassword());
-        mockDataSource.setJdbcurl(springFrameworkConfig.getJdbcurl());
+        mockDataSource.setUsername(constructorConfig.getUsername());
+        mockDataSource.setPassword(constructorConfig.getPassword());
+        mockDataSource.setJdbcurl(constructorConfig.getJdbcurl());
         return mockDataSource;
     }
 

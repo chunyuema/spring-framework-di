@@ -1,5 +1,6 @@
 package com.chunyue.springframeworkdi;
 
+import com.chunyue.springframeworkdi.config.ConstructorConfig;
 import com.chunyue.springframeworkdi.config.SpringFrameworkConfig;
 import com.chunyue.springframeworkdi.controllers.*;
 import com.chunyue.springframeworkdi.datasource.MockDataSource;
@@ -66,6 +67,12 @@ public class SpringFrameworkDiApplication {
 		System.out.println(springFrameworkConfig.getUsername());
 		System.out.println(springFrameworkConfig.getPassword());
 		System.out.println(springFrameworkConfig.getJdbcurl());
+
+		System.out.println("------- Constructor Binding Bean --------");
+		ConstructorConfig constructorConfig = ctx.getBean(ConstructorConfig.class);
+		System.out.println(constructorConfig.getUsername());
+		System.out.println(constructorConfig.getPassword());
+		System.out.println(constructorConfig.getJdbcurl());
 	}
 
 }
